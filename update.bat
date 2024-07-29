@@ -1,14 +1,6 @@
 @echo off
 setlocal enabledelayedexpansion
 
-REM 设置用户名和密码
-set GIT_USERNAME=ngtilt
-set GIT_PASSWORD="Kq!9$4FyYzpp"
-
-
-git config --global user.email "editornah2022@gmail.com"
-git config --global user.name "ngtilt"
-
 REM 检查并创建 update.c 文件
 if not exist update.c (
     echo // This is the update.c file. > update.c
