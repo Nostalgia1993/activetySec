@@ -10,14 +10,11 @@ REM 获取当前时间并编码为 Base64
 for /f "tokens=1-5 delims=:. " %%a in ("%date% %time%") do (
     set now=%%a %%b %%c %%d %%e
 )
-echo %now% > temp_time.txt
-certutil -encode temp_time.txt temp_time.b64 >nul
-for /f "skip=1 delims=" %%a in (temp_time.b64) do (
-    set encoded_time=%%a
-    goto done
-)
-:done
-del temp_time.txt temp_time.b64
+set datetime=%now%
+set datetime=!datetime: =_!
+
+REM 使用 PowerShell 进行 Base64 编码
+for /f %%i in ('powershell -NoProfile -Command "[Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes('%datetime%'))"') do set encoded_time=%%i
 
 REM 将编码后的时间追加到 update.c
 echo // %encoded_time% >> update.c
