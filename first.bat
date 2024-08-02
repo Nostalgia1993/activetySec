@@ -32,6 +32,8 @@ REM === 生成 SSH 密钥对 ===
 echo 正在生成 SSH 密钥对...
 set /p email="请输入您的电子邮箱地址(任意自己的有效邮箱都可以): "
 ssh-keygen -t rsa -b 4096 -C "%email%" -f "%USERPROFILE%\.ssh\id_rsa" -N "" 
+git config --global user.email "%email%"
+git config --global user.name "updater"
 if exist "%USERPROFILE%\.ssh\id_rsa" (
     echo SSH 密钥对生成成功。
 ) else (
