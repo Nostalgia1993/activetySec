@@ -1,6 +1,10 @@
 @echo off
 setlocal enabledelayedexpansion
 
+REM === 获取当前脚本所在目录 ===
+set "SCRIPT_DIR=%~dp0"
+cd /d "%SCRIPT_DIR%"
+
 REM 检查并创建 update.c 文件
 if not exist update.c (
     echo // This is the update.c file. > update.c
